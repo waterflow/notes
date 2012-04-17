@@ -1,0 +1,61 @@
+STEP 1:
+# T flag means skipping Test::Unit framework
+rails new sample_app -T --skip-bundle
+
+STEP 2:
+# add the following to Gemfile
+  
+group :development do
+  gem 'rspec-rails'
+end
+  
+group :test do
+  gem 'rspec'
+  gem 'webrat'
+end
+
+STEP 3:
+# bundle 
+bundle install
+
+STEP 4:
+# install rspec
+rails g rspec:install
+
+STEP 5:
+rails g controller Pages home contact
+
+# rake db:migrate
+
+STEP 6:
+# install autotest
+gem install autotest
+gem install autotest-rails-pure
+gem install autotest-fsevent
+gem install autotest-growl
+
+STEP 7:
+# modify .autotest
+require 'autotest/fsevent'
+require 'autotest/growl'
+
+# you can remove the irrelavent directories
+# it's ok if you ommit the "git" word
+git rm -r spec/views
+git rm -r spec/helpers
+
+=begin
+describe "GET 'home'" do
+  it "should be successful" do
+    get 'home'
+    response.should be_success
+  end
+end
+
+STEP 8:
+# runt the test
+rspec spec/
+autotest # this works if you have installed autotest gems
+
+
+
