@@ -3,7 +3,7 @@ STEP 1:
 rails new sample_app -T --skip-bundle
 
 STEP 2:
-# add the following to Gemfile
+# add rspec gem to Gemfile
   
 group :development do
   gem 'rspec-rails'
@@ -31,7 +31,13 @@ STEP 6:
 # install autotest
 gem install autotest
 gem install autotest-rails-pure
+
 gem install autotest-fsevent
+# if it fails, you can do as the following
+FSEVENT_SLEEP="/absolute/path/to/fsevent_sleep" gem install autotest-fsevent
+# if occures the permission error, do as follows
+rvmsudo FSEVENT_SLEEP="/absolute/path/to/fsevent_sleep" gem install autotest-fsevent
+
 gem install autotest-growl
 
 STEP 7:
@@ -51,6 +57,7 @@ describe "GET 'home'" do
     response.should be_success
   end
 end
+=end
 
 STEP 8:
 # runt the test
